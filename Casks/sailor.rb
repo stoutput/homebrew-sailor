@@ -10,8 +10,10 @@ cask "sailor" do
   desc "macOS desktop app for managing Docker containers via Colima"
   homepage "https://github.com/stoutput/sailor-desktop"
 
-  depends_on formula: "stoutput/sailor/colima@0.9.1"
-  depends_on formula: "stoutput/sailor/docker@27.5.1"
+  depends_on formula: "colima"
+  depends_on formula: "docker"
+  depends_on formula: "docker-buildx"
+  depends_on formula: "docker-compose"
 
   app "Sailor.app"
 
