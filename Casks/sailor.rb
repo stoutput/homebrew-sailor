@@ -1,9 +1,9 @@
 cask "sailor" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.2"
-  sha256 arm:   "7997e7d0d2b182a5d4d90fde747f427c1f53141b8cd4dfe1c23ddb71ddc19006",
-         intel: "2568e4c15fecc172152e8ae90d44d5f27b0251e03a34a5fb8d4f0670fed0e918"
+  version "1.0.3"
+  sha256 arm:   "2feff5824ae13b9394add05f22d50c723fed8637a5e1ee4a738f2fcb941417af",
+         intel: "660993950abb624b69a766c57227c81a5e5912c7fb5e308d1a9c8bce6979fc5f"
 
   url "https://github.com/stoutput/sailor-desktop/releases/download/v#{version}/Sailor-darwin-#{arch}-#{version}.zip"
   name "Sailor"
