@@ -19,6 +19,28 @@ cask "sailor" do
 
   postflight do
     system "xattr", "-dr", "com.apple.quarantine", "#{appdir}/Sailor.app"
+
+    require "json"
+    require "fileutils"
+
+    brew_prefix = Hardware::CPU.arm? ? "/opt/homebrew" : "/usr/local"
+    plugin_path = "#{brew_prefix}/lib/docker/cli-plugins"
+
+    docker_config_path = File.expand_path("~/.docker/config.json")
+    docker_dir = File.dirname(docker_config_path)
+
+    config = if File.exist?(docker_config_path)
+      JSON.parse(File.read(docker_config_path)) rescue {}
+    else
+      {}
+    end
+
+    extra_dirs = config["cliPluginsExtraDirs"] || []
+    unless extra_dirs.include?(plugin_path)
+      config["cliPluginsExtraDirs"] = extra_dirs + [plugin_path]
+      FileUtils.mkdir_p(docker_dir)
+      File.write(docker_config_path, JSON.pretty_generate(config) + "\n")
+    end
   end
 
   zap trash: [
