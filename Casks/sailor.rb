@@ -17,6 +17,10 @@ cask "sailor" do
 
   app "Sailor.app"
 
+  postflight do
+    system "xattr", "-dr", "com.apple.quarantine", "#{appdir}/Sailor.app"
+  end
+
   zap trash: [
     "~/.config/sailor",
   ]
